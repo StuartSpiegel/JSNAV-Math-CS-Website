@@ -1,0 +1,90 @@
+
+<html>
+<link rel="stylesheet" type="text/css" href="main.css">
+<div class="wrapper active-element">
+        <header class="main-header">
+          <!-- Begin Menu -->
+            <nav>
+                <!-- Title -->
+                <div class="masthead active-element">
+                    <h1><a href="#0">Problems in Mathematics and Computer Science</a></h1>
+                    <h3>By: Stuart Spiegel </h3>
+                    <div id="menu-toggle" class="menu-toggle active-element">
+                        <div class="one"></div>
+                        <div class="two"></div>
+                        <div class="three"></div>
+                    </div>
+                </div>
+                <!-- END TITLE -->
+                <div class="main-nav-list active-element">
+                    <ul>
+                        <li><a href="#0">Page 1</a></li>
+                        <li><a href="#0">Page 2</a></li>
+                        <li><a href="#0" class="mobile-hide">Page 3</a></li>
+                        <li><a href="#0" class="active-link">Page 4</a></li>
+                        <li><a href="#0">Page 5</a></li>
+                    </ul>
+                </div>
+            </nav>
+            <!-- End Menu -->
+        </header>
+        <!-- Start Body -->
+              <br>
+              <br>
+              <br>
+        <main class="main-contents">
+            <!-- First Problem ***************************************************************************************************************************-->
+            <h2>1.) Binary Representation of the Fibonacci Sequence</h2>
+            <br>
+            <p>
+              <b>Objective:</b> To find the binary representation (or no. of 1's in binary representation) of nth term in Fibonacci sequence where n is of the order 10^6.
+              My current approach: Find nth term (in decimal) in Fibonacci sequence using matrix exponentiation method and then convert the nth term to binary and then find number of 1's. <br>
+              <br>
+              <b>My question: Can this program be improved if I straight-away work with binary numbers? Is there a comparatively faster way to find nth term in Fibonacci sequence if we deal with binary numbers?</b><br>
+              <br>
+            </p>
+ <!-- **************************************************************************************************************** -->
+            <p>
+              - You would bet there would be a direct binary way to calculate this, but currently there is none discovered
+                <br>
+              - The fastest way is somewhere around <em>O(log2n)</em> where a binary way may look more like <em>O(logn).</em> This comparison is like the difference between how fast computers can add numbers, and how fast computers can multiply (multiplying use normal school-based, like we do. There are more complex ways that are much faster). So essentially the following way is still pretty fast compared to a direct approach:
+                <br>
+              - Interestingly enough, instead of using F(n) in a binary way, the following algorithm uses n in binary.
+                <br>
+              - Take note of these basic properties of <em>Fibonacci numbers: </em>
+                <br>
+            ->  F(2k+1)=4(F(2k−F(2k−1)+2(−1)k)) <br>
+            ->  F(2k−1)=F(2k)+F(2k−1) <br>
+            ->  F(2k)=F(2k+1)−F(2k−1) <br>
+              <b>**With these properties we can double the position of a Fibonacci number's index, instead of going one by one, which makes it so much faster. </b><br>
+                <br>
+                <br>
+                <b>Steps:</b>
+                <br>
+                1.) Convert the n (as in F(n)) to binary. Example: The 11th Fibonacci number, so 11 in binary is 10112<br>
+                2.) Have F(0)=0 and F(1()=1, and let k=1 to start. Lastly start from the 2nd binary digit place from the left. In this case it is the 0.<br>
+                3.) Calculate (F(2k−1),F(2k),F(2k+1)) using the formulas listed above<br>
+                4.) If the digit place is 0 use (F2k−1,F2k), if it is odd use (F2k,F2k+1) for the next values you substitute for (F(k−1),F(k)). Now shift the digit place one to the right.<br>
+                5.) Repeat steps 3-4 until all the digits places are gone, and you will get your final Fibonacci number which will end up being whatever value you end up for your next Fk<br>
+                <br>
+                <br>
+                <b>Example:</b>
+                <br>
+                <br>
+              -->  To find F(13), n=13 in binary is 11012<br>
+                -Starting from (F0,F1)=(0,1), the next value sets are: (12+02,F2k+1−F2k−1,4(1)2−02−2)=(1,2−1,2)=(1,1,2)<br>
+                -Because the 2nd digit from the left is a 1, we will use (1,2) for our next values.<br>
+                -Next values: (5,8,13). 3rd digit from the left is a 0 so we use (5,8). <br>
+                -Next values: (89,144,233). 4th digit form the left is a 1 so we use (144,233), but that was the last digit place, so our answer is Fk, which is 233. <br>
+                <br>
+                <br>
+                <b>Optimizations:</b>
+              -->  Calculate F(2k) and F(2k−1) first and recycle them when calculating F(2k+1) and F(2k−1.) <br>
+              -->  Because 2(−1)k is −2 when k is odd, and +2 when k is even, Whatever digit place read to determine what values to use for (Fk−1,Fk), also predicts which +2 or −2 to use. So in our example because we read a 1 in the 2nd place, we would use −2 for the next 2(−1)k. And because we read a 0 in the 3rd place, we would use +2 for the 2(−1)k after. So use a +2 if you read a 0, and use −2 if you read a 1.<br>
+
+              </p>
+              <br>
+              <br>
+              <br>
+
+</html>
