@@ -86,5 +86,59 @@
               <br>
               <br>
               <br>
-
+              <!--Start of 2nd problem -->
+              <h2>2.) Knight's Tour </h2>
+              <br>
+              <br>
+              <p>
+              A knight's tour is a sequence of moves of a knight on a chessboard such that the knight visits every square only once. If the knight ends on a square that is one knight's move from the beginning square (so that it could tour the board again immediately, following the same path), the tour is closed; otherwise, it is open.
+              <br>
+              <br>
+              Before we dive into the Knight Tour problem its important to understand the theory behind it. The Knight Tour problem is an instance of the more general Hamiltonian Path problem in graph theory.
+              <br>
+              <br>
+              In the mathematical field of graph theory the Hamiltonian path problem and the Hamiltonian cycle problem are problems of determining whether a Hamiltonian path (a path in an undirected or directed graph that visits each vertex exactly once) or a Hamiltonian cycle exists in a given graph (whether directed or undirected). Both problems are NP-complete.
+              <br>
+              <em>The directed and undirected Hamiltonian cycle problems were two of Karp's 21 NP-complete problems. They remain NP-complete even for special kinds of graphs. </em> <br>
+              <br>
+              <br>
+              Algorithmic Analysis: <em>There are n! different sequences of vertices that might be Hamiltonian paths in a given n-vertex graph</em> (and are, in a complete graph), so a brute force search algorithm that tests all possible sequences would be very slow.
+              <br>
+              <br>
+              Dynamic Programming: <em>Also, a dynamic programming algorithm of Bellman, Held, and Karp can be used to solve the problem in time O(n2 2n).</em> In this method, one determines, for each set S of vertices and each vertex v in S, whether there is a path that covers exactly the vertices in S and ends at v. For each choice of S and v, a path exists for (S,v) if and only if v has a neighbor w such that a path exists for (S − v,w), which can be looked up from already-computed information in the dynamic program <br>
+              <br>
+              Reduction: In one direction, the Hamiltonian path problem for graph G is equivalent to the Hamiltonian cycle problem in a graph H obtained from G by adding a new vertex x and connecting x to all vertices of G. Thus, finding a Hamiltonian path cannot be significantly slower (in the worst case, as a function of the number of vertices) than finding a Hamiltonian cycle. <br>
+              <br>
+              In the other direction, the Hamiltonian cycle problem for a graph G is equivalent to the Hamiltonian path problem in the graph H obtained by copying one vertex v of G, v', that is, letting v' have the same neighbourhood as v, and by adding two dummy vertices of degree one, and connecting them with v and v', respectively.<br>
+              <br>
+              <br>
+                Heuristic Based Algorithms: Warnsdorff’s algorithm <br>
+              <br>
+              <em>Warnsdorff’s Rule:</em>
+              <br>
+              We can start from any initial position of the knight on the board. <br>
+              We always move to an adjacent, unvisited square with minimal degree (minimum number of unvisited adjacent). <br>
+              This algorithm may also more generally be applied to any graph. <br>
+              <br>
+              Some definitions: <br>
+              <br>
+              A position Q is accessible from a position P if P can move to Q by a single Knight’s move, and Q has not yet been visited.
+              The accessibility of a position P is the number of positions accessible from P.
+              <br>
+              <br>
+              Algorithm:
+              <br>
+              <em>Steps</em> <br>
+              <br>
+              1.) Set P to be a random initial position on the board. <br>
+              2.) Mark the board at P with the move number “1” <br>
+              3.) Do following for each move number from 2 to the number of squares on the board: <br>
+              4.) let S be the set of positions accessible from P. <br>
+              5.) Set P to be the position in S with minimum accessibility <br>
+              6.)  the board at P with the current move number <br>
+              7.) Return the marked board — each square will be marked with the move number on which it is visited. <br>
+              <br>
+              <br>
+              </p>
+              
 </html>
